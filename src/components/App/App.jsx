@@ -48,7 +48,7 @@ const App = () => {
 			<main>
 				<Routes>
 					<Route path="/" element={<HomePage />} />
-					<Route path="/free" element={<FreePage />} />
+					<Route path="/free" element={<FreePage userControll={{ user, setUser }} />} />
 					<Route path="/games" element={<GamePage />} />
 					<Route path="/transfer" element={<TransferPage />} />
 					<Route path="/profile" element={<ProfilePage />} />

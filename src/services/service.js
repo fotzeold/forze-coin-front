@@ -16,6 +16,17 @@ async function authUser(userInfo) {
 	}
 }
 
-export { authUser }
+async function getFreeBonus(userId, chatId) {
+	try {
+		let res = await fetch(`${URL}/free-coin/${userId}/${chatId}`)
+		let data = await res.json()
+
+		return data
+	} catch (error) {
+		return error
+	}
+}
+
+export { authUser, getFreeBonus }
 
 

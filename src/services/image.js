@@ -7,6 +7,8 @@ import imageTelegram from "../assets/img/telegram.png"
 import imageUser from "../assets/img/user.png"
 import imageBot from "../assets/img/bot.png"
 
+import gifGoldBag from "../assets/img/gold-bag.gif"
+
 export {
 	logoCoin,
 	logoMemo,
@@ -14,5 +16,6 @@ export {
 	imageCoin,
 	imageTelegram,
 	imageUser,
-	imageBot
+	imageBot,
+	gifGoldBag
 }
