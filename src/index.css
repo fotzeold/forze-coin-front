@@ -1,4 +1,4 @@
-body {
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -15,7 +15,32 @@ code {
 }
 
 .container{
-	max-width: 1200px;
+	max-width:1200px;
+	margin: 0 auto;
 	padding: 0 10px;
 }
 
+.row{
+	display: flex;
+}
+
+.btn{
+	display: block;
+	background-color: #0E5744;
+	height: 35px;
+	font-size: 18px;
+	color: white;
+	padding: 0 15px;
+	border-radius: 10px;
+	border: none;
+	cursor: pointer;
+}
+
+h1, h2{
+	font-size: 24px;
+	font-weight: 500;
+}
+
+section{
+	padding: 85px 0 90px 0;
+}

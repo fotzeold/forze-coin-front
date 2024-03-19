@@ -1,0 +1,79 @@
+@import "../../style/variable.scss";
+
+footer{
+	font-size: 14px;
+	border-top: 1px solid #ECECEC;
+	padding: 5px 0;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	background-color: white;
+
+	.row{
+		align-items: center;
+		justify-content: center;
+		gap: 10px;
+		justify-content: space-between;
+	}
+
+	.footer__nav{
+		text-decoration: none;
+		color: black;
+		flex-direction: column;
+		width: 54px;
+		gap: 0;
+		opacity: 0.75;
+	}
+
+	.footer__nav figure{
+		width: 36px;
+		height: 36px;
+	}
+
+	.footer__nav.active{
+		color: $main-color;
+		opacity: 1;
+		font-weight: 500;
+	}
+
+	.footer__nav-home{
+		background: url("../../assets/logo/home.svg") 0 0/cover no-repeat;
+	}
+
+	.footer__nav-free{
+		background: url("../../assets/logo/free.svg") 0 0/cover no-repeat;
+	}
+
+	.footer__nav-games{
+		background: url("../../assets/logo/game.svg") 0 0/cover no-repeat;
+	}
+
+	.footer__nav-transfer{
+		background: url("../../assets/logo/transfer.svg") 0 0/cover no-repeat;
+	}
+
+	.footer__nav-profile{
+		background: url("../../assets/logo/profile.svg") 0 0/cover no-repeat;
+	}
+
+	.footer__nav.active .footer__nav-home{
+		background: url("../../assets/logo/home-active.svg") 0 0/cover no-repeat;
+	}
+
+	.footer__nav.active .footer__nav-free{
+		background: url("../../assets/logo/free-active.svg") 0 0/cover no-repeat;
+	}
+
+	.footer__nav.active .footer__nav-games{
+		background: url("../../assets/logo/game-active.svg") 0 0/cover no-repeat;
+	}
+
+	.footer__nav.active .footer__nav-transfer{
+		background: url("../../assets/logo/transfer-active.svg") 0 0/cover no-repeat;
+	}
+
+	.footer__nav.active .footer__nav-profile{
+		background: url("../../assets/logo/profile-active.svg") 0 0/cover no-repeat;
+	}
+}

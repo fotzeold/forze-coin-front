@@ -1,0 +1,18 @@
+header{
+	height: 60px;
+	border-bottom: 1px solid #ECECEC;
+	font-size: 18px;
+	line-height: 60px;
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	background-color: white;
+	.row{
+		height: 100%;
+		justify-content: space-between;
+		align-items: center;
+		gap: 10px;
+	}
+}
+
