@@ -1,4 +1,4 @@
-const URL = "https://forze-coin.space"
+const URL = "https://api.forze-coin.space"
 
 async function authUser(userInfo) {
 	try {
@@ -46,7 +46,7 @@ async function transferCoin(userLogin, transferUserLogin, totalCoin) {
 async function updateUserCoin(userParam) {
 	try {
 		let res = await fetch(`${URL}/user_coin`, {
-			method: "PUT",
+			method: "PATCH",
 			headers: { "Content-Type": "application/json" },
 			body: JSON.stringify(userParam)
 		})
