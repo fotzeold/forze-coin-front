@@ -1,0 +1,37 @@
+.profile-page{
+	.profile-page__user{
+		width: fit-content;
+		display: flex;
+		gap: 25px;
+		font-size: 24px;
+		align-items: center;
+		img{
+			width: 160px;
+		}
+	}
+	p{
+		font-size: 14px;
+		color: gray;
+	}
+
+	span{
+		font-size: 20px;
+		color: black;
+	}
+
+	button{
+		margin: 25px 0;
+		width: 100%;
+		max-width: 450px;
+	}
+
+	.profile-page__message{
+		p{
+			margin-bottom: 15px;
+		} 
+		span {
+			display: block;
+			margin-bottom: 25px;
+		}
+	}
+}

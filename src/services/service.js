@@ -27,6 +27,37 @@ async function getFreeBonus(userId, chatId) {
 	}
 }
 
-export { authUser, getFreeBonus }
+async function transferCoin(userLogin, transferUserLogin, totalCoin) {
+	try {
+		console.log({ userLogin, transferUserLogin, totalCoin })
+		let res = await fetch(`${URL}/transfer`, {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify({ userLogin, transferUserLogin, totalCoin })
+		})
+		let data = await res.json()
+
+		return data
+	} catch (error) {
+		return error
+	}
+}
+
+async function updateUserCoin(userParam) {
+	try {
+		let res = await fetch(`${URL}/user_coin`, {
+			method: "PUT",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify(userParam)
+		})
+		let data = await res.json()
+
+		return data
+	} catch (error) {
+		return error
+	}
+}
+
+export { authUser, getFreeBonus, transferCoin, updateUserCoin }
 
 

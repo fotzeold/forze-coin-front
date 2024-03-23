@@ -34,14 +34,17 @@
 		align-items: center;
 	}
 
-	.free-page__timer-message{
+	.free-page__timer-message img{
 		height: 86.4px;
-		line-height: 86.4px;
 	}
 
 	button{
 		width: 100%;
 		max-width: 320px;
 		margin: 0 auto;
+	}
+
+	button img{
+		height: 35px;
 	}
 }

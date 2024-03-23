@@ -1,8 +1,33 @@
 import "./footer.scss"
 
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
+import { useEffect } from "react";
 
-const Footer = () => {
+const Footer = ({ setLabelPage }) => {
+
+	const location = useLocation()
+
+	useEffect(() => {
+		switch (location.pathname) {
+			case "/":
+				setLabelPage("Головна");
+				break;
+			case "/free":
+				setLabelPage("Бонус");
+				break;
+			case "/games":
+				setLabelPage("Ігри");
+				break;
+			case "/transfer":
+				setLabelPage("Переказ");
+				break;
+			case "/profile":
+				setLabelPage("Профіль");
+				break;
+			default:
+				break;
+		}
+	}, [location]);
 
 	return (
 		<footer>

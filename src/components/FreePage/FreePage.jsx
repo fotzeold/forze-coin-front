@@ -1,6 +1,6 @@
 import "./free.scss"
 
-import { gifGoldBag } from "../../services/image"
+import { gifGoldBag, spinnerGreen, spinnerWhite } from "../../services/image"
 
 import { useState, useEffect } from "react"
 
@@ -10,6 +10,7 @@ const FreePage = ({ userControll }) => {
 
 	const { user, setUser } = userControll
 	const [timeLeft, setTimeLeft] = useState("");
+	const [isLoading, setisLoading] = useState(false)
 
 	const calculateTimeLeft = () => {
 		const currentTime = new Date();
@@ -30,6 +31,9 @@ const FreePage = ({ userControll }) => {
 	};
 
 	const getFreeBonusHandleBtn = (event) => {
+		event.target.disabled = true
+		setisLoading(true)
+
 		getFreeBonus(user.userId, user.chatId)
 			.then(data => {
 				if (data.userInfo) {
@@ -37,7 +41,10 @@ const FreePage = ({ userControll }) => {
 				} else {
 					alert("Вам потрібно дочекатись коли вийде час")
 				}
+				event.target.disabled = false
 			})
+			.catch(() => alert("Щось пішло не так..."))
+			.finally(() => setisLoading(false))
 	}
 
 	useEffect(() => {
@@ -57,7 +64,7 @@ const FreePage = ({ userControll }) => {
 				<h2>Отримуй FRZC кожні 3 години безкоштовно!</h2>
 
 				<div className="free-page__timer row">
-					{timeLeft === "" ? <div className="free-page__timer-message">Отримуємо дані...</div> :
+					{timeLeft === "" ? <div className="free-page__timer-message"><img src={spinnerGreen} alt="spinnerGreen" /></div> :
 						timeLeft.hours >= 0 && timeLeft.minutes >= 0 && timeLeft.seconds >= 0 ?
 							<>
 								<div className="free-page__timer-box">
@@ -77,8 +84,7 @@ const FreePage = ({ userControll }) => {
 					}
 				</div>
 
-				<button className="btn" onClick={getFreeBonusHandleBtn}>Отримати</button>
-
+				<button className="btn" onClick={getFreeBonusHandleBtn}> {isLoading ? <img src={spinnerWhite} alt="spinnerWhite" /> : "Отримати"}</button>
 			</div>
 		</section>
 	)

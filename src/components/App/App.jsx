@@ -7,6 +7,7 @@ import FreePage from "../FreePage/FreePage"
 import GamePage from "../GamePage/GamePage"
 import TransferPage from "../TransferPage/TransferPage"
 import ProfilePage from "../ProfilePage/ProfilePage"
+import AllGamesPage from "../AllGamesPage/AllGamesPage"
 
 import { Routes, Route } from "react-router-dom";
 
@@ -18,6 +19,7 @@ const App = () => {
 	const [user, setUser] = useState({})
 	const [lcInfo, setlcInfo] = useState({})
 	const [authPage, setAuthPage] = useState(false)
+	const [labelPage, setLabelPage] = useState("Головна")
 
 	useEffect(() => {
 		if (lcInfo.userId) {
@@ -33,10 +35,10 @@ const App = () => {
 	}, [lcInfo])
 
 	const getUserInfoFromLC = () => {
-		const lcUserInfo = localStorage.getItem("forze-coin.space")
+		const lcUserInfo = JSON.parse(localStorage.getItem("forze-coin.space"))
 
-		if (lcUserInfo) {
-			setlcInfo(JSON.parse(lcUserInfo))
+		if (lcUserInfo.userId) {
+			setlcInfo(lcUserInfo)
 		} else {
 			setAuthPage(true)
 		}
@@ -44,17 +46,18 @@ const App = () => {
 
 	return (
 		<>
-			<Header user={user} />
+			<Header user={user} labelPage={labelPage} />
 			<main>
 				<Routes>
 					<Route path="/" element={<HomePage />} />
 					<Route path="/free" element={<FreePage userControll={{ user, setUser }} />} />
-					<Route path="/games" element={<GamePage />} />
-					<Route path="/transfer" element={<TransferPage />} />
-					<Route path="/profile" element={<ProfilePage />} />
+					<Route path="/games/roulette" element={<GamePage userControll={{ user, setUser }} />} />
+					<Route path="/games" element={<AllGamesPage setLabelPage={setLabelPage} />} />
+					<Route path="/transfer" element={<TransferPage userControll={{ user, setUser }} />} />
+					<Route path="/profile" element={<ProfilePage userControll={{ user }} />} />
 				</Routes>
 			</main>
-			<Footer />
+			<Footer setLabelPage={setLabelPage} />
 			<AuthPage controllAuth={{ setUser, authPage, setAuthPage }} />
 		</>
 	)

@@ -5,6 +5,7 @@
 	width: 100%;
 	left: 0;
 	top: 0;
+	z-index: 9999;
 	background-color: white;
 
 	.row{
@@ -44,6 +45,12 @@
 		.btn{
 			width: 100%;
 			margin-top: 25px;
+		}
+
+		.btn img{
+			height: 35px;
+			display: block;
+			margin: 0 auto;
 		}
 	}
 }

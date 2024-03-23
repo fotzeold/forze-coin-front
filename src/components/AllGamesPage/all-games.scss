@@ -1,0 +1,19 @@
+.all-games{
+
+	.row{
+		justify-content: space-between;
+		gap: 25px;
+		flex-wrap: wrap;
+	}
+
+	.game-link{
+		color: black;
+		font-size: 14px;
+		text-decoration: none;
+		text-align: center;
+		img{
+			width: 70px;
+			height: 70px;
+		}
+	}
+}
