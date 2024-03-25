@@ -121,9 +121,6 @@ const GamePage = ({ userControll }) => {
 					>
 						{
 							currentList ? currentList.map((el, i) => {
-								if (i === prizeNumber + 8) {
-									return (<li key={i} style={{ background: "red" }}> <img src={el.img} alt={el.value} /> <p>{el.value}</p></li>)
-								}
 								return (<li key={i}> <img src={el.img} alt={el.value} /> <p>{el.value}</p></li>)
 							}) : ""
 						}
