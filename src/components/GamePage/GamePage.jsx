@@ -37,7 +37,6 @@ const GamePage = ({ userControll }) => {
 
 	const [currentList, setCurrentList] = useState([])
 	const [rate, setRate] = useState("")
-	const [prizeNumber, setPrizeNumber] = useState("")
 	const [possList, setPossList] = useState(0)
 	const [rouletteWidth, setRouletteWidth] = useState(0);
 	const rouletteRef = useRef(null);
@@ -94,7 +93,6 @@ const GamePage = ({ userControll }) => {
 					})
 
 					setCurrentList((prevList) => [...prevList, ...data.rewards])
-					setPrizeNumber(data.prizeNumber)
 					setPossList((data.prizeNumber + 8) * 150 - rouletteWidth / 2 + 75)
 					setTimeout(() => {
 						setPossList(0)
@@ -130,7 +128,7 @@ const GamePage = ({ userControll }) => {
 				<button
 					className='btn'
 					onClick={rollRoulete}
-				// disabled={possList ? true : false}
+					disabled={currentList.length === 8 ? false : true}
 				>Крутити</button>
 				<img className='cat' src={imageCat} alt="imageCat" />
 			</div>
