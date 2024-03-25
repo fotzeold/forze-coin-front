@@ -27,7 +27,7 @@ const TransferPage = ({ userControll }) => {
 		if (isLoading) return
 		setIsLoading(true)
 
-		transferCoin(user.login, formData.transferLogin, formData.transferCoin)
+		transferCoin(user, formData.transferLogin, formData.transferCoin)
 			.then(data => {
 				if (data.userInfo) {
 					changeMessage(data.message, "green")

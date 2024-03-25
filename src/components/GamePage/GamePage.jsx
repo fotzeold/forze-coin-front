@@ -18,57 +18,27 @@ import {
 
 import { useState, useEffect, useRef } from 'react';
 
-import { updateUserCoin } from '../../services/service';
+import { startRoulette } from '../../services/service';
 
 const GamePage = ({ userControll }) => {
 
-	const { user, setUser } = userControll
-
-	const ceils = 50
-	const rewards = [
+	const rewardVariants = [
 		{ rew: 5, value: "Ставка х5", chance: 1, img: rouletteX5 },
-		{ rew: 0, value: "Тобі ще пощастить", chance: 13, img: rouletteX0 },
 		{ rew: 2, value: "Ставка х2", chance: 23, img: rouletteX2 },
-		{ rew: 0.25, value: "Краще ніж нічого", chance: 38, img: rouletteX0_25 },
-		{ rew: 3, value: "Тепер їх троє", chance: 40, img: rouletteX3 },
 		{ rew: 0.5, value: "Половина ставки", chance: 60, img: rouletteX0_5 },
+		{ rew: 3, value: "Тепер їх троє", chance: 40, img: rouletteX3 },
 		{ rew: 1.5, value: " +50% ставки", chance: 70, img: rouletteX1_5 },
 		{ rew: 0.75, value: "Підкріпись", chance: 80, img: rouletteX0_75 },
 		{ rew: 1.25, value: "Тримай четвертак", chance: 85, img: rouletteX1_25 },
 		{ rew: 1, value: "Спробуй ще", chance: 90, img: rouletteX1 },
-		{ rew: 0.35, value: "Третина ставки", chance: 100, img: rouletteX0_35 }
 	]
 
-	const getItem = () => {
-		let reward
+	const { user, setUser } = userControll
 
-		while (!reward) {
-			const chance = Math.floor(Math.random() * 100)
-
-			rewards.forEach(el => {
-				if (chance <= el.chance && !reward) {
-					reward = el
-				}
-			})
-		}
-
-		return reward
-	}
-
-	const generateList = () => {
-		let list = []
-
-		for (let i = 0; i <= ceils; i++) {
-			list.push(getItem())
-		}
-
-		return list
-	}
-
-	const [currentList, setCurrentList] = useState(generateList())
-	const [possList, setPossList] = useState(0)
+	const [currentList, setCurrentList] = useState([])
 	const [rate, setRate] = useState("")
-
+	const [prizeNumber, setPrizeNumber] = useState("")
+	const [possList, setPossList] = useState(0)
 	const [rouletteWidth, setRouletteWidth] = useState(0);
 	const rouletteRef = useRef(null);
 
@@ -76,33 +46,65 @@ const GamePage = ({ userControll }) => {
 		if (rouletteRef.current) {
 			const width = rouletteRef.current.offsetWidth;
 			setRouletteWidth(width);
+			setCurrentList(rewardVariants.sort(() => Math.random() - 0.5))
 		}
-	}, []);
+	}, [rouletteRef]);
 
 	const rollRoulete = () => {
+		if (+rate > user.point) {
+			alert("У вас недостатньо FRZC на балансі")
+			return
+		}
+
 		if (rate === "" || +rate < 0.1) {
 			alert("Зробіть ставку")
 			return
 		}
 
-		setPossList(3825 - rouletteWidth / 2)
-		const newReward = +(currentList[25].rew * +rate).toFixed(3);
-		const updatedPoints = user.point - +rate + newReward;
-		setUser({ ...user, point: user.point - +rate });
-		let updatedUser
+		setUser(prevUser => ({ ...prevUser, point: user.point - +rate }));
 
-		updateUserCoin({ ...user, point: updatedPoints })
+		startRoulette(user, rate)
 			.then(data => {
-				if (data.userInfo) {
-					updatedUser = data.userInfo
+				if (data.rewards) {
+					data.rewards.forEach(el => {
+						switch (el.rew) {
+							case 0:
+								return el.img = rouletteX0
+							case 0.25:
+								return el.img = rouletteX0_25
+							case 0.35:
+								return el.img = rouletteX0_35
+							case 0.5:
+								return el.img = rouletteX0_5
+							case 0.75:
+								return el.img = rouletteX0_75
+							case 1:
+								return el.img = rouletteX1
+							case 1.25:
+								return el.img = rouletteX1_25
+							case 1.5:
+								return el.img = rouletteX1_25
+							case 2:
+								return el.img = rouletteX2
+							case 3:
+								return el.img = rouletteX3
+							case 5:
+								return el.img = rouletteX5
+						}
+					})
+
+					setCurrentList((prevList) => [...prevList, ...data.rewards])
+					setPrizeNumber(data.prizeNumber)
+					setPossList((data.prizeNumber + 8) * 150 - rouletteWidth / 2 + 75)
+					setTimeout(() => {
+						setPossList(0)
+						setUser(data.userInfo)
+						setTimeout(() => {
+							setCurrentList(rewardVariants.sort(() => Math.random() - 0.5))
+						}, 500)
+					}, 4700)
 				}
 			})
-
-		setTimeout(() => {
-			setPossList(0)
-			setCurrentList(generateList())
-			setUser(updatedUser)
-		}, 4700)
 	}
 
 	return (
@@ -114,10 +116,12 @@ const GamePage = ({ userControll }) => {
 				</div>
 
 				<div className="game-page__roulete" ref={rouletteRef}>
-					<ul className="roulete__list row" style={{ left: -possList + "px", transition: possList ? "left 4s" : "left 1s" }}>
+					<ul className="roulete__list row"
+						style={{ left: -possList + "px", transition: possList ? "left 4s" : "left 1s" }}
+					>
 						{
 							currentList ? currentList.map((el, i) => {
-								if (i === 25) {
+								if (i === prizeNumber + 8) {
 									return (<li key={i} style={{ background: "red" }}> <img src={el.img} alt={el.value} /> <p>{el.value}</p></li>)
 								}
 								return (<li key={i}> <img src={el.img} alt={el.value} /> <p>{el.value}</p></li>)
@@ -126,7 +130,11 @@ const GamePage = ({ userControll }) => {
 					</ul>
 				</div>
 				<input type="number" step={0.1} value={rate} onChange={(event) => setRate(event.target.value)} />
-				<button className='btn' onClick={rollRoulete} disabled={possList ? true : false}>Крутити</button>
+				<button
+					className='btn'
+					onClick={rollRoulete}
+				// disabled={possList ? true : false}
+				>Крутити</button>
 				<img className='cat' src={imageCat} alt="imageCat" />
 			</div>
 		</section>

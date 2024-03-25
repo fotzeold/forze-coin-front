@@ -37,7 +37,7 @@ const App = () => {
 	const getUserInfoFromLC = () => {
 		const lcUserInfo = JSON.parse(localStorage.getItem("forze-coin.space"))
 
-		if (lcUserInfo.userId) {
+		if (lcUserInfo && lcUserInfo.userId) {
 			setlcInfo(lcUserInfo)
 		} else {
 			setAuthPage(true)

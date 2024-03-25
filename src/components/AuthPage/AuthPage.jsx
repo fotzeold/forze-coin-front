@@ -35,7 +35,7 @@ const AuthPage = ({ controllAuth }) => {
 
 		setIsLoading(true)
 
-		authUser({ userId: formData.userId, login: formData.login })
+		authUser({ userId: formData.userId.trim(), login: formData.login.trim() })
 			.then((data) => {
 				if (data.login) {
 					setUser(data)

@@ -27,13 +27,12 @@ async function getFreeBonus(userId, chatId) {
 	}
 }
 
-async function transferCoin(userLogin, transferUserLogin, totalCoin) {
+async function transferCoin(user, transferUserLogin, totalCoin) {
 	try {
-		console.log({ userLogin, transferUserLogin, totalCoin })
 		let res = await fetch(`${URL}/transfer`, {
 			method: "POST",
 			headers: { "Content-Type": "application/json" },
-			body: JSON.stringify({ userLogin, transferUserLogin, totalCoin })
+			body: JSON.stringify({ user, transferUserLogin, totalCoin })
 		})
 		let data = await res.json()
 
@@ -43,12 +42,12 @@ async function transferCoin(userLogin, transferUserLogin, totalCoin) {
 	}
 }
 
-async function updateUserCoin(userParam) {
+async function startRoulette(user, rate) {
 	try {
-		let res = await fetch(`${URL}/user_coin`, {
-			method: "PATCH",
+		let res = await fetch(`${URL}/roulette`, {
+			method: "POST",
 			headers: { "Content-Type": "application/json" },
-			body: JSON.stringify(userParam)
+			body: JSON.stringify({ user, rate })
 		})
 		let data = await res.json()
 
@@ -58,6 +57,6 @@ async function updateUserCoin(userParam) {
 	}
 }
 
-export { authUser, getFreeBonus, transferCoin, updateUserCoin }
+export { authUser, getFreeBonus, transferCoin, startRoulette }
 
 
