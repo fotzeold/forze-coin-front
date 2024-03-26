@@ -1,6 +1,6 @@
 import "./all-games.scss"
 import { Link, useLocation } from "react-router-dom"
-import { logoSpinner } from "../../services/image";
+import { logoSpinner, logoGameCoin } from "../../services/image";
 import { useEffect } from "react";
 
 const AllGamesPage = ({ setLabelPage }) => {
@@ -20,6 +20,10 @@ const AllGamesPage = ({ setLabelPage }) => {
 					<Link to="/games/roulette" className="game-link">
 						<img src={logoSpinner} alt="Spinner" />
 						<p>Рулетка</p>
+					</Link>
+					<Link to="/games/coin-flip" className="game-link">
+						<img src={logoGameCoin} alt="Coin-Flip" />
+						<p>Монетка</p>
 					</Link>
 				</div>
 			</div>

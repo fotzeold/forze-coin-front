@@ -1,4 +1,5 @@
-import './game.scss';
+import './roulette.scss';
+import GameTopbar from '../GameTopbar/GameTopbar';
 
 import {
 	logoSpinner,
@@ -20,7 +21,7 @@ import { useState, useEffect, useRef } from 'react';
 
 import { startRoulette } from '../../services/service';
 
-const GamePage = ({ userControll }) => {
+const RouletteGame = ({ userControll }) => {
 
 	const rewardVariants = [
 		{ rew: 5, value: "Ставка х5", chance: 1, img: rouletteX5 },
@@ -106,12 +107,9 @@ const GamePage = ({ userControll }) => {
 	}
 
 	return (
-		<section className="game-page">
+		<section className="game-roulete">
 			<div className="container">
-				<div className="game-page__top row">
-					<img src={logoSpinner} alt="logoSpinner" />
-					<h2>Рулетка</h2>
-				</div>
+				<GameTopbar gameInfo={{ logo: logoSpinner, gameTitle: "Рулетка" }} />
 
 				<div className="game-page__roulete" ref={rouletteRef}>
 					<ul className="roulete__list row"
@@ -136,4 +134,4 @@ const GamePage = ({ userControll }) => {
 	);
 };
 
-export default GamePage;
+export default RouletteGame;

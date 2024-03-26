@@ -1,6 +1,7 @@
 import logoCoin from "../assets/logo/coin.svg"
 import logoMemo from "../assets/logo/memo.svg"
 import logoSpinner from "../assets/logo/spinner.svg"
+import logoGameCoin from "../assets/logo/CoinFlip.svg"
 
 import imageCoin from "../assets/img/coin.png"
 import imageTelegram from "../assets/img/telegram.png"
@@ -49,5 +50,6 @@ export {
 	rouletteX1,
 	rouletteX2,
 	rouletteX3,
-	rouletteX5
+	rouletteX5,
+	logoGameCoin
 }

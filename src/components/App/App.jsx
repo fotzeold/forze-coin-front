@@ -4,10 +4,11 @@ import Header from "../Header/Header"
 import Footer from "../Footer/Footer"
 import HomePage from "../HomePage/HomePage"
 import FreePage from "../FreePage/FreePage"
-import GamePage from "../GamePage/GamePage"
+import RouletteGame from "../RouletteGame/RouletteGame"
 import TransferPage from "../TransferPage/TransferPage"
 import ProfilePage from "../ProfilePage/ProfilePage"
 import AllGamesPage from "../AllGamesPage/AllGamesPage"
+import Coingame from "../CoinGame/CoinGame"
 
 import { Routes, Route } from "react-router-dom";
 
@@ -51,7 +52,8 @@ const App = () => {
 				<Routes>
 					<Route path="/" element={<HomePage />} />
 					<Route path="/free" element={<FreePage userControll={{ user, setUser }} />} />
-					<Route path="/games/roulette" element={<GamePage userControll={{ user, setUser }} />} />
+					<Route path="/games/roulette" element={<RouletteGame userControll={{ user, setUser }} />} />
+					<Route path="/games/coin-flip" element={<Coingame userControll={{ user, setUser }} />} />
 					<Route path="/games" element={<AllGamesPage setLabelPage={setLabelPage} />} />
 					<Route path="/transfer" element={<TransferPage userControll={{ user, setUser }} />} />
 					<Route path="/profile" element={<ProfilePage userControll={{ user }} />} />

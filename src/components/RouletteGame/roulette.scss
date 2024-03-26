@@ -1,22 +1,6 @@
 @import "../../style/variable.scss";
 
-.game-page{
-	.row{
-		gap: 15px;
-		align-items: center;
-	}
-
-	.game-page__top{
-		img{
-			width: 36px;
-			height: 36px;
-		}
-
-		h2{
-			font-size: 20px;
-		}
-	}
-
+.game-roulete{
 	.game-page__roulete{
 		width: 100%;
 		overflow: hidden;
