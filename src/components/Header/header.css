@@ -1,0 +1,26 @@
+header {
+  height: 60px;
+  border-bottom: 1px solid #ECECEC;
+  font-size: 18px;
+  line-height: 60px;
+  position: fixed;
+  z-index: 100;
+  left: 0;
+  top: 0;
+  width: 100%;
+  background-color: white;
+  -webkit-box-shadow: 2px 2px 12px rgba(208, 208, 208, 0.325);
+          box-shadow: 2px 2px 12px rgba(208, 208, 208, 0.325);
+}
+
+header .row {
+  height: 100%;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 10px;
+}
+/*# sourceMappingURL=header.css.map */

@@ -57,6 +57,28 @@ async function startRoulette(user, rate) {
 	}
 }
 
-export { authUser, getFreeBonus, transferCoin, startRoulette }
+async function getActiveCoinGame() {
+	try {
+		let res = await fetch(`${URL}/coin-game`)
+		let data = await res.json()
+
+		return data
+	} catch (error) {
+		return error
+	}
+}
+
+async function getAllCoinGames() {
+	try {
+		let res = await fetch(`${URL}/coin-games-history`)
+		let data = await res.json()
+
+		return data
+	} catch (error) {
+		return error
+	}
+}
+
+export { authUser, getFreeBonus, transferCoin, startRoulette, getActiveCoinGame, getAllCoinGames }
 
 

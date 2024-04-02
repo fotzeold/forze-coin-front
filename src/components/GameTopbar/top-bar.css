@@ -1,0 +1,20 @@
+.game-page__top {
+  margin-bottom: 25px;
+}
+
+.game-page__top .row {
+  gap: 15px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.game-page__top img {
+  width: 36px;
+  height: 36px;
+}
+
+.game-page__top h2 {
+  font-size: 20px;
+}
+/*# sourceMappingURL=top-bar.css.map */

@@ -1,0 +1,62 @@
+.free-page {
+  height: 100dvh;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
+}
+
+.free-page img {
+  max-width: 300px;
+  display: block;
+  margin: 0 auto;
+}
+
+.free-page .free-page__timer-box p {
+  font-size: 32px;
+}
+
+.free-page .free-page__timer-box {
+  width: 80px;
+  padding: 10px;
+}
+
+.free-page .free-page__timer {
+  margin: 25px 0;
+}
+
+.free-page .free-page__timer-box span {
+  font-size: 18px;
+}
+
+.free-page .free-page__timer.row {
+  gap: 25px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.free-page .free-page__timer-message img {
+  height: 86.4px;
+}
+
+.free-page button {
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+.free-page button img {
+  height: 35px;
+}
+/*# sourceMappingURL=free.css.map */

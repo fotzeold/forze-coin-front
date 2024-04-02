@@ -1,6 +1,8 @@
 import "./profile.scss"
 
 import { imageUser } from "../../services/image"
+import { useState } from "react"
+import { uploadPhoto } from "../../services/service"
 
 const ProfilePage = ({ userControll }) => {
 
@@ -33,7 +35,7 @@ const ProfilePage = ({ userControll }) => {
 		<section className="profile-page">
 			<div className="container">
 				<div className="profile-page__user row">
-					<img src={imageUser} alt="imageUser" />
+					<img src={user.img ? user.img : imageUser} alt="imageUser" />
 					<div className="profile-page__user-info">
 						<p>Користувач:  <br /><span>{user.userName}</span></p>
 						<p>Баланс: <br /> <span>{user.point && user.point.toFixed(3)} FRZC</span></p>

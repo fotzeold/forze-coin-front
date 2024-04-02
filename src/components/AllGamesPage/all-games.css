@@ -1,0 +1,18 @@
+.all-games .row {
+  gap: 25px;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.all-games .game-link {
+  color: black;
+  font-size: 14px;
+  text-decoration: none;
+  text-align: center;
+}
+
+.all-games .game-link img {
+  width: 70px;
+  height: 70px;
+}
+/*# sourceMappingURL=all-games.css.map */

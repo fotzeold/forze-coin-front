@@ -1,0 +1,48 @@
+.profile-page .profile-page__user {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 25px;
+  font-size: 24px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.profile-page .profile-page__user img {
+  width: 160px;
+  height: 160px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  cursor: pointer;
+  border-radius: 100%;
+}
+
+.profile-page p {
+  font-size: 14px;
+  color: gray;
+}
+
+.profile-page span {
+  font-size: 20px;
+  color: black;
+}
+
+.profile-page button {
+  margin: 25px 0;
+  width: 100%;
+  max-width: 450px;
+}
+
+.profile-page .profile-page__message p {
+  margin-bottom: 15px;
+}
+
+.profile-page .profile-page__message span {
+  display: block;
+  margin-bottom: 25px;
+}
+/*# sourceMappingURL=profile.css.map */
