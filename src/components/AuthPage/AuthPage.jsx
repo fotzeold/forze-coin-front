@@ -3,7 +3,10 @@ import { authUser } from "../../services/service"
 import { spinnerWhite } from "../../services/image"
 import { useState } from "react"
 
+import { useLocation } from "react-router-dom"
+
 const AuthPage = ({ controllAuth }) => {
+	const locationPath = useLocation()
 
 	const { setUser, authPage, setAuthPage } = controllAuth
 	const [message, setMessage] = useState({ color: "", text: "" })
@@ -52,7 +55,7 @@ const AuthPage = ({ controllAuth }) => {
 	};
 
 	return (
-		<div className={authPage ? "auth" : "auth hide"}>
+		<div className={authPage && locationPath.pathname !== "/" ? "auth" : "auth hide"}>
 			<div className="container">
 				<div className="row">
 					<h2>Вхід Forze Coin</h2>

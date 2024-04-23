@@ -79,6 +79,17 @@ async function getAllCoinGames() {
 	}
 }
 
-export { authUser, getFreeBonus, transferCoin, startRoulette, getActiveCoinGame, getAllCoinGames }
+async function getNews() {
+	try {
+		let res = await fetch(`${URL}/news`)
+		let data = await res.json()
+
+		return data
+	} catch (error) {
+		return error
+	}
+}
+
+export { authUser, getFreeBonus, transferCoin, startRoulette, getActiveCoinGame, getAllCoinGames, getNews }
 
 
