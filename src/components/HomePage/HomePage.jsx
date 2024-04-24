@@ -50,12 +50,12 @@ const HomePage = () => {
 					<h1>Новини</h1>
 					<div className="home-page__news-wrapper row">
 						{
-							news.length > 0 ? news.map((el, i) => {
+							news.length > 0 ? news.slice().reverse().map((el, i) => {
 								return (
 									<div className="news-wrapper__item" key={el._id + "-news" + i + "000"}>
 										<h3>{el.title}</h3>
 										{
-											el.text.map((txt, i) => <p key={el._id + "-txt-" + i}>{txt}</p>)
+											el.text.map((txt, j) => <p key={el._id + "-txt-" + j}>{txt}</p>)
 										}
 									</div>
 								)
