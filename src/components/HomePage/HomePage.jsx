@@ -42,7 +42,7 @@ const HomePage = () => {
 						spy={true}
 						activeClass="active"
 						smooth={true}
-						offset={-120}
+						offset={-70}
 						duration={500}
 					>Про бота</Link>
 				</div>

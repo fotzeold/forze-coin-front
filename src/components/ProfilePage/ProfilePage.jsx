@@ -1,12 +1,19 @@
 import "./profile.scss"
 
 import { imageUser } from "../../services/image"
-import { useState } from "react"
+import TextareaAutosize from 'react-textarea-autosize';
+import { useState, useEffect } from "react"
 import { uploadPhoto } from "../../services/service"
+import { postNews } from "../../services/service";
 
 const ProfilePage = ({ userControll }) => {
 
 	const { user } = userControll
+	const [modalWindow, setModalWindow] = useState(false)
+	const [randomText, setRandomText] = useState("")
+	const [titleNews, setTitleNews] = useState("")
+	const [textNews, setTextNews] = useState("")
+	const [errorMessage, setErrorMessage] = useState("")
 
 	const funnyStatuses = [
 		"Найкращий мер усіх часів - це точно був Колібрі! А ти як гадаєш?",
@@ -26,9 +33,29 @@ const ProfilePage = ({ userControll }) => {
 		"Хоч я і сайт і існую зовсім мало, но я точно знаю що найкращий адмін це Мальок!"
 	];
 
+	useEffect(() => {
+		setRandomText(funnyStatuses[Math.floor(Math.random() * funnyStatuses.length)])
+	}, [])
+
+
 	const unLogin = () => {
 		localStorage.removeItem("forze-coin.space")
 		window.location.reload()
+	}
+
+	const addPost = () => {
+		let textArr = textNews.split("\n")
+
+		postNews(titleNews, textArr).then(data => {
+			if (data && data.message === "Новину опубліковано") {
+				setModalWindow(false)
+			} else {
+				setErrorMessage("Щось пішло не так, спробуйте пізніше")
+				setTimeout(() => {
+					setErrorMessage("")
+				}, 2000)
+			}
+		})
 	}
 
 	return (
@@ -39,20 +66,38 @@ const ProfilePage = ({ userControll }) => {
 					<div className="profile-page__user-info">
 						<p>Користувач:  <br /><span>{user.userName}</span></p>
 						<p>Баланс: <br /> <span>{user.point && user.point.toFixed(3)} FRZC</span></p>
-						<p>Роль: <br /> <span>Криветка!</span> </p>
+						<p>Роль: <br /> <span>{user.role && user.role}</span> </p>
 					</div>
 				</div>
 
-				<button className="btn" onClick={unLogin}>Вийти з профілю</button>
+				{
+					user && user.role === "Адмін галєри" || user.role === "Творець" && <button onClick={() => setModalWindow(true)} className="btn">Добавити пост</button>
+				}
+				<button className="btn logaut-btn" onClick={unLogin}>Вийти з профілю</button>
 
 				<div className="profile-page__message">
 					<p>У вас повідомлення від сайту</p>
-					<span>{funnyStatuses[Math.floor(Math.random() * funnyStatuses.length)]}</span>
+					<span>{randomText && randomText}</span>
 					<p>Історія твоїх ігор </p>
 					<span>Цей блок у розробці...</span>
 				</div>
+				{
+					modalWindow &&
+					<div className="modal">
+						<div className="modal__window">
+							<h3>Новий пост</h3>
+							<input type="text" placeholder="Заголовок" value={titleNews} onChange={(event) => setTitleNews(event.target.value)} />
+							<TextareaAutosize minRows="1" maxRows="6" placeholder="Текст" value={textNews} onChange={(event) => setTextNews(event.target.value)} />
+							{errorMessage && <p>{errorMessage}</p>}
+							<div className="row">
+								<button className="btn close-modal" onClick={() => setModalWindow(false)}>Скасувати</button>
+								<button className="btn" onClick={addPost}>Добавити</button>
+							</div>
+						</div>
+					</div>
+				}
 			</div>
-		</section>
+		</section >
 	)
 }
 

@@ -90,6 +90,21 @@ async function getNews() {
 	}
 }
 
-export { authUser, getFreeBonus, transferCoin, startRoulette, getActiveCoinGame, getAllCoinGames, getNews }
+async function postNews(title, text) {
+	try {
+		let res = await fetch(`${URL}/news`, {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify({ title, text })
+		})
+		let data = await res.json()
+
+		return data
+	} catch (error) {
+
+	}
+}
+
+export { authUser, getFreeBonus, transferCoin, startRoulette, getActiveCoinGame, getAllCoinGames, getNews, postNews }
 
 

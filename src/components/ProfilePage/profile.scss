@@ -23,6 +23,9 @@
 		color: black;
 	}
 
+	.logaut-btn{
+		background: rgb(188, 0, 0);
+	}
 	button{
 		margin: 25px 0;
 		width: 100%;
@@ -36,6 +39,48 @@
 		span {
 			display: block;
 			margin-bottom: 25px;
+		}
+	}
+	.modal{
+		position: absolute;
+		top: 0;
+		left: 0;
+		background-color: rgba(0, 0, 0, 0.14);
+		height: 100dvh;
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	.modal__window{
+		width: 100%;
+		max-width: 320px;
+		padding: 15px;
+		border-radius: 10px;
+		display: flex;
+		flex-direction: column;
+		gap: 15px;
+		background-color: white;
+		box-shadow: 1px 1px 4px rgb(177, 177, 177);
+		button{
+			margin: 10px 0 0 0;
+		}
+		textarea{
+			border-radius: 10px;
+			resize: none;
+			font-size: 16px;
+			padding: 7px 10px;
+			height: 35px;
+		}
+		.row{
+			gap: 10px;
+		}
+		.close-modal{
+			background-color: rgb(188, 0, 0);
+		}
+		p{
+			color: rgb(188, 0, 0);
+			text-align: center;
 		}
 	}
 }

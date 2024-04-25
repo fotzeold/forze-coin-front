@@ -1,7 +1,7 @@
 .home-page{
 	padding: 125px 0 90px 0;
 	.home-page__news{
-		margin-bottom: 40px;
+		padding-bottom: 40px;
 		h1{
 			margin-bottom: 20px;
 		}
@@ -38,6 +38,7 @@
 			text-decoration: none;
 			color: black;
 			padding-bottom: 3px;
+			cursor: pointer;
 		}
 		.link-to-section.active{
 			border-bottom: 2px solid rgb(36, 128, 70);
@@ -71,7 +72,7 @@
 	}
 
 	.home-page__bot{
-		margin-top: 40px;
+		padding-top: 40px;
 	}
 
 	.home-page__bot.row{
