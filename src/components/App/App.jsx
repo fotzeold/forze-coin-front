@@ -50,7 +50,7 @@ const App = () => {
 			<Header user={user} labelPage={labelPage} />
 			<main>
 				<Routes>
-					<Route path="/" element={<HomePage />} />
+					<Route path="/" element={<HomePage user={user} />} />
 					<Route path="/free" element={<FreePage userControll={{ user, setUser }} />} />
 					<Route path="/games/roulette" element={<RouletteGame userControll={{ user, setUser }} />} />
 					<Route path="/games/coin-flip" element={<Coingame userControll={{ user, setUser }} />} />

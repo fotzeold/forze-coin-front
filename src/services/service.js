@@ -90,12 +90,12 @@ async function getNews() {
 	}
 }
 
-async function postNews(title, text) {
+async function postNews(title, text, login) {
 	try {
 		let res = await fetch(`${URL}/news`, {
 			method: "POST",
 			headers: { "Content-Type": "application/json" },
-			body: JSON.stringify({ title, text })
+			body: JSON.stringify({ title, text, login })
 		})
 		let data = await res.json()
 
@@ -105,6 +105,21 @@ async function postNews(title, text) {
 	}
 }
 
-export { authUser, getFreeBonus, transferCoin, startRoulette, getActiveCoinGame, getAllCoinGames, getNews, postNews }
+async function deleteNews(title, date) {
+	try {
+		let res = await fetch(`${URL}/news`, {
+			method: "DELETE",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify({ title, date })
+		})
+		let data = await res.json()
+
+		return data
+	} catch (error) {
+
+	}
+}
+
+export { authUser, getFreeBonus, transferCoin, startRoulette, getActiveCoinGame, getAllCoinGames, getNews, postNews, deleteNews }
 
 

@@ -2,10 +2,10 @@ import "./home.scss"
 
 import { imageCoin, imageTelegram, imageBot } from "../../services/image"
 import { Link, animateScroll as scroll } from "react-scroll";
-import { getNews } from "../../services/service"
+import { getNews, deleteNews } from "../../services/service"
 import { useEffect, useState } from "react"
 
-const HomePage = () => {
+const HomePage = ({ user }) => {
 
 	const [news, setNews] = useState([])
 
@@ -16,6 +16,18 @@ const HomePage = () => {
 			}
 		})
 	})
+
+	const deleteNewsFromHome = (title, date) => {
+		let isDeleted = window.confirm("Новину буде видалено!")
+
+		if (isDeleted) {
+			deleteNews(title, date).then(data => {
+				if (data.message != 'Новину видалено') {
+					window.alert("Щось пышло не так... Спробуй пізніше!")
+				}
+			})
+		}
+	}
 
 	return (
 		<section className="home-page">
@@ -50,13 +62,20 @@ const HomePage = () => {
 					<h1>Новини</h1>
 					<div className="home-page__news-wrapper row">
 						{
-							news.length > 0 ? news.slice().reverse().map((el, i) => {
+							news.length > 0 ? news.slice().sort((a, b) => new Date(b.date) - new Date(a.date)).map((el, i) => {
+								let date = new Date(el.date);
+								let day = ("0" + date.getDate()).slice(-2);
+								let month = ("0" + (date.getMonth() + 1)).slice(-2);
+								let year = date.getFullYear();
+								let formattedDate = `${day}.${month}.${year}`;
 								return (
 									<div className="news-wrapper__item" key={el._id + "-news" + i + "000"}>
-										<h3>{el.title}</h3>
+										<h3>{el.title}<span> - {formattedDate}</span></h3>
+										{user && (user.login === el.author || user.login === "forzeoldgg") && <button onClick={() => deleteNewsFromHome(el.title, el.date)} className="delete__news">x</button>}
 										{
 											el.text.map((txt, j) => <p key={el._id + "-txt-" + j}>{txt}</p>)
 										}
+										<h4>@{el.author}</h4>
 									</div>
 								)
 							}) : "Новин поки немає..."

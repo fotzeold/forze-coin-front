@@ -46,7 +46,7 @@ const ProfilePage = ({ userControll }) => {
 	const addPost = () => {
 		let textArr = textNews.split("\n")
 
-		postNews(titleNews, textArr).then(data => {
+		postNews(titleNews, textArr, user.login).then(data => {
 			if (data && data.message === "Новину опубліковано") {
 				setModalWindow(false)
 			} else {
